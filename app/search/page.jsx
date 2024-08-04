@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { getMovies } from "@/utils/requests";
 import Card from "../components/Card"; // Make sure to import the Card component
@@ -45,4 +45,12 @@ function SearchedMovies() {
     );
 }
 
-export default SearchedMovies;
+function SearchedMoviesWrapper() {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <SearchedMovies />
+        </Suspense>
+    );
+}
+
+export default SearchedMoviesWrapper;
